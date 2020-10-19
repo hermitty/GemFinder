@@ -40,14 +40,11 @@
 // }
 //////////////////
 ///
-import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:gem_finder_mobile/service/stone_service.dart';
 import 'package:gem_finder_mobile/view/list_view/list_view.dart';
 import 'package:gem_finder_mobile/view/side_menu/side_menu.dart';
 
-import 'model/stone_model.dart';
 
 void main() {
   runApp(MyApp());

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:gem_finder_mobile/model/stone_model.dart';
 
 class StoneService {
@@ -7,9 +5,9 @@ class StoneService {
 
   static List<StoneModel> getStones() {
     var list = new List<StoneModel>();
-    list.add(new StoneModel("moon stone"));
-    // list.add(new StoneModel("labradorite"));
-    // list.add(new StoneModel("obsidian"));
+    list.add(new StoneModel('moon stone', 'moon_stone'));
+    list.add(new StoneModel('labradorite', 'labradorite'));
+    list.add(new StoneModel('obsidian', 'obsidian'));
     return list;
   }
 }
