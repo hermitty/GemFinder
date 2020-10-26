@@ -1,0 +1,11 @@
+2020-10-03 16:39:07.315 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44337/favicon.ico  
+2020-10-03 16:39:07.776 +02:00 [ERR] No service for type 'Convey.Auth.AccessTokenValidatorMiddleware' has been registered.
+System.InvalidOperationException: No service for type 'Convey.Auth.AccessTokenValidatorMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.<>c__DisplayClass5_1.<<UseMiddlewareInterface>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Convey.WebApi.Exceptions.ErrorHandlerMiddleware.InvokeAsync(HttpContext context, RequestDelegate next)
+2020-10-03 16:39:07.936 +02:00 [INF] Request finished in 622.7514ms 400 application/json
