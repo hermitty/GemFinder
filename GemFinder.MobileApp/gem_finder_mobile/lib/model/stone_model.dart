@@ -2,8 +2,8 @@ class StoneModel {
   String name;
   String label;
 
-  StoneModel(String name, String label) {
-    this.name = name;
+  StoneModel(String label) {
     this.label = label;
+    this.name = label.replaceAll(RegExp('_'), ' ');
   }
 }
