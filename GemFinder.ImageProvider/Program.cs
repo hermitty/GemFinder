@@ -24,23 +24,38 @@ namespace GemFinder.ImageProvider
 
         static void Main(string[] args)
         {
+
             var imageProvider = new ImageProvider();
-            string[] images = { "labradorite", "moon stone", "obsidian" };
-            imageProvider.GetStoredModels();
-            //imageProvider.DownloadImages(images);
-            //Console.WriteLine("Hello World!");
-            //var html = GetHtmlCode();
-            //var urls = GetUrls(html);
-            //var rnd = new Random();
+            string[] images = {
+                "labradorite",
+                "moon stone",
+                "obsidian",
+                "agate",
+                "amber",
+                "apatite",
+                "amethyst",
+                "azurite",
+                "jasper",
+                "lapis lazuli",
+                "larimar",
+                "lazurite",
+                "malachite",
+                "onyx",
+                "quartz",
+                "topaz",
+                "tiger eye",
+                "tourmaline",
+                "turquoise",
+                "ammonite",
+                "amazonite",
+                "dendrite",
+                "coral fossil",
 
-            //int randomUrl = rnd.Next(0, urls.Count - 1);
-
-            //string luckyUrl = urls[randomUrl];
-
-            //byte[] image = GetImage(luckyUrl);
 
 
-
+            };
+            //imageProvider.GetStoredModels();
+            imageProvider.DownloadImages(images);
         }
         public static string GetHtmlCode()
         {
@@ -91,7 +106,7 @@ namespace GemFinder.ImageProvider
             var request = (HttpWebRequest)WebRequest.Create(url);
             var response = (HttpWebResponse)request.GetResponse();
 
-  
+
             using (Stream dataStream = response.GetResponseStream())
             {
                 if (dataStream == null)
@@ -103,7 +118,7 @@ namespace GemFinder.ImageProvider
             }
 
             // Construct a bitmap from the button image resource.
-           
+
 
             return null;
         }

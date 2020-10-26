@@ -44,6 +44,7 @@ namespace GemFinder.ImageProvider
         private string GetHtmlCode(string topic, int offset = 0)
         {
             topic = topic.Replace(" ", "+");
+            topic = topic + "+stone";
             //remove spaces
             //&as_rights=cc_publicdomain
             //&start = 20
@@ -85,35 +86,45 @@ namespace GemFinder.ImageProvider
 
         private void SaveImageFromUrl(string url, string name)
         {
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            var response = (HttpWebResponse)request.GetResponse();
-            var folderName = name.Replace(" ", "_");
-
-            using (Stream dataStream = response.GetResponseStream())
+            //TODO try catch
+            try
             {
-                if (dataStream == null)
-                    return;
-                Image img = System.Drawing.Image.FromStream(dataStream);
-                SetImageComment(img, url);
+                var request = (HttpWebRequest)WebRequest.Create(url);
 
-                var imagePath = Path.Combine(Configuration.StoredImagesPath, folderName);
-                if (!Directory.Exists(imagePath))
+                var response = (HttpWebResponse)request.GetResponse();
+                var folderName = name.Replace(" ", "_");
+
+                using (Stream dataStream = response.GetResponseStream())
                 {
-                    Directory.CreateDirectory(imagePath);
-                }
+                    if (dataStream == null)
+                        return;
+                    Image img = System.Drawing.Image.FromStream(dataStream);
+                    SetImageComment(img, url);
 
-                try
-                {
-                    //img.Save(Path.Combine(Configuration.StoredImagesPath, folderName, url + ".Jpeg"), ImageFormat.Jpeg);
-                    // 
+                    var imagePath = Path.Combine(Configuration.StoredImagesPath, folderName);
+                    if (!Directory.Exists(imagePath))
+                    {
+                        Directory.CreateDirectory(imagePath);
+                    }
 
-                    img.Save(Path.Combine(imagePath, UniqueName() + ".jpeg"), ImageFormat.Jpeg);
-                }
-                catch
-                {
+                    try
+                    {
+                        //img.Save(Path.Combine(Configuration.StoredImagesPath, folderName, url + ".Jpeg"), ImageFormat.Jpeg);
+                        // 
 
+                        img.Save(Path.Combine(imagePath, UniqueName() + ".jpeg"), ImageFormat.Jpeg);
+                    }
+                    catch
+                    {
+
+                    }
                 }
             }
+            catch
+            {
+
+            }
+           
         }
 
         private string UniqueName()
@@ -126,7 +137,7 @@ namespace GemFinder.ImageProvider
             PropertyItem item = (PropertyItem)FormatterServices.GetUninitializedObject(typeof(PropertyItem));
 
             // This will assign "Joe Doe" to the "Authors" metadata field
-            string sTmp = "Joe DoeX"; // The X will be replaced with a null.  String must be null terminated.
+            //string sTmp = "Joe DoeX"; // The X will be replaced with a null.  String must be null terminated.
             var itemData = System.Text.Encoding.UTF8.GetBytes(url + "X");
             itemData[itemData.Length - 1] = 0;// Strings must be null terminated or they will run together
             item.Type = 2; //String (ASCII)
