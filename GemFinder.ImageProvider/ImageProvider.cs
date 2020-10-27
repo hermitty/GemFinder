@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -51,7 +51,9 @@ namespace GemFinder.ImageProvider
             string url = $"https://www.google.com/search?q={topic}&tbm=isch&start={offset}&tbs=ift:jpg";
             string data = "";
 
-            var request = (HttpWebRequest)WebRequest.Create(url);
+            var request = (HttpWebRequest)WebRequest.Create(url);//TODO try catch
+            request.Accept = "text/html, application/xhtml+xml, */*";
+            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko";
             var response = (HttpWebResponse)request.GetResponse();
 
             using (Stream dataStream = response.GetResponseStream())
