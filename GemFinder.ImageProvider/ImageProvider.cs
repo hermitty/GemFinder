@@ -1,3 +1,5 @@
+using GemFinder.ImageProvider.Helper;
+using GemFinder.ImageProvider.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,155 +13,71 @@ namespace GemFinder.ImageProvider
 {
     public class ImageProvider : IImageProvider
     {
+        private DownloadHelper downloadHelper;
+        private string projectPath;
+        private const string DIRECTORY_NAME = "Images";
+        private const int FIELD_ID = 270;
 
-        public void DownloadImages(string[] names, int? numberOfImages = null)
+        public ImageProvider()
         {
-            if (numberOfImages == null)
-                numberOfImages = Configuration.NumberOfImages;
-
-            foreach (var name in names)
-            {
-                DownloadImagesForName(name, numberOfImages);
-            }
+            downloadHelper = new DownloadHelper();
+            projectPath = Path.Combine(System.IO.Path.GetFullPath(@"..\..\..\"));
         }
 
-        private void DownloadImagesForName(string name, int? numberOfImages)
+        public void DownloadImages(string[] imageNames = null, int? imagesNumber = null, string pathToSave = null, string mainTopic = null)
         {
-            int offset = 0;
-            while (offset < numberOfImages)
+            var numberOfImages = imagesNumber ?? Configuration.NumberOfImages;
+            pathToSave = pathToSave ?? Configuration.StoredImagesPath ?? Path.Combine(projectPath, DIRECTORY_NAME);
+            imageNames = imageNames ?? Configuration.ImageNames;
+            mainTopic = mainTopic ?? Configuration.MainTopic;
+
+            foreach (var name in imageNames)
             {
-                var html = GetHtmlCode(name, offset);
-                var urls = GetUrls(html);
-                foreach (var url in urls)
+                int offset = 0;
+                while (offset < numberOfImages)
                 {
-                    SaveImageFromUrl(url, name);
-
-                    offset++;
-                    if (offset >= numberOfImages)
-                        break;
-                }
-            }
-        }
-
-        private string GetHtmlCode(string topic, int offset = 0)
-        {
-            topic = topic.Replace(" ", "+");
-            topic = topic + "+stone";
-            //remove spaces
-            //&as_rights=cc_publicdomain
-            //&start = 20
-            string url = $"https://www.google.com/search?q={topic}&tbm=isch&start={offset}&tbs=ift:jpg";
-            string data = "";
-
-            var request = (HttpWebRequest)WebRequest.Create(url);//TODO try catch
-            request.Accept = "text/html, application/xhtml+xml, */*";
-            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko";
-            var response = (HttpWebResponse)request.GetResponse();
-
-            using (Stream dataStream = response.GetResponseStream())
-            {
-                if (dataStream == null)
-                    return "";
-                using (var sr = new StreamReader(dataStream))
-                {
-                    data = sr.ReadToEnd();
-                }
-            }
-            return data;
-        }
-
-        private List<string> GetUrls(string html)
-        {
-            var urls = new List<string>();
-            int ndx = html.IndexOf("class=\"GpQGbf\"", StringComparison.Ordinal);
-            ndx = html.IndexOf("<img", ndx, StringComparison.Ordinal);
-
-            while (ndx >= 0)
-            {
-                ndx = html.IndexOf("src=\"", ndx, StringComparison.Ordinal);
-                ndx = ndx + 5;
-                int ndx2 = html.IndexOf("\"", ndx, StringComparison.Ordinal);
-                string url = html.Substring(ndx, ndx2 - ndx);
-                urls.Add(url);
-                ndx = html.IndexOf("<img", ndx, StringComparison.Ordinal);
-            }
-            return urls;
-        }
-
-        private void SaveImageFromUrl(string url, string name)
-        {
-            //TODO try catch
-            try
-            {
-                var request = (HttpWebRequest)WebRequest.Create(url);
-
-                var response = (HttpWebResponse)request.GetResponse();
-                var folderName = name.Replace(" ", "_");
-
-                using (Stream dataStream = response.GetResponseStream())
-                {
-                    if (dataStream == null)
-                        return;
-                    Image img = System.Drawing.Image.FromStream(dataStream);
-                    SetImageComment(img, url);
-
-                    var imagePath = Path.Combine(Configuration.StoredImagesPath, folderName);
-                    if (!Directory.Exists(imagePath))
+                    var html = downloadHelper.GetHtmlCode(name, offset, mainTopic);
+                    var urls = downloadHelper.GetUrls(html);
+                    foreach (var url in urls)
                     {
-                        Directory.CreateDirectory(imagePath);
-                    }
+                        var image = downloadHelper.GetImageFromUrl(url.DowloadUrl);
+                        if (image == null)
+                            continue;
 
-                    try
-                    {
-                        //img.Save(Path.Combine(Configuration.StoredImagesPath, folderName, url + ".Jpeg"), ImageFormat.Jpeg);
-                        // 
+                        downloadHelper.SetImageComment(image, url.SourceUrl, FIELD_ID);
+                        downloadHelper.SaveImage(image, pathToSave, name);
 
-                        img.Save(Path.Combine(imagePath, UniqueName() + ".jpeg"), ImageFormat.Jpeg);
-                    }
-                    catch
-                    {
-
+                        offset++;
+                        if (offset >= numberOfImages)
+                            break;
                     }
                 }
             }
-            catch
+        }
+
+        public new List<FileItem> GetStoredImagesInfo(string path = null)
+        {
+            var mainFolderPath = path ?? Configuration.StoredImagesPath ?? Path.Combine(projectPath, DIRECTORY_NAME);
+            var folderNames = Directory.GetDirectories(mainFolderPath)
+                .Select(Path.GetFileName).ToArray();
+            List<FileItem> result = new List<FileItem>();
+
+            foreach (var folder in folderNames)
             {
+                var objectFoldrPath = Path.Combine(mainFolderPath, folder);
+                var imageNames = Directory.GetFiles(objectFoldrPath).Select(Path.GetFileName).ToArray();
 
+                foreach (var fileName in imageNames)
+                {
+                    var id = fileName.Replace(".jpeg", String.Empty);
+                    var img = Image.FromFile(Path.Combine(objectFoldrPath, fileName));
+                    var property = img.GetPropertyItem(270);
+                    var source = System.Text.Encoding.UTF8.GetString(property.Value);
+                    result.Add(new FileItem(new Guid(id), folder, source, objectFoldrPath));
+                }
             }
-           
-        }
 
-        private string UniqueName()
-        {
-            return Guid.NewGuid().ToString();
-        }
-
-        private void SetImageComment(Image img, string url)
-        {
-            PropertyItem item = (PropertyItem)FormatterServices.GetUninitializedObject(typeof(PropertyItem));
-
-            // This will assign "Joe Doe" to the "Authors" metadata field
-            //string sTmp = "Joe DoeX"; // The X will be replaced with a null.  String must be null terminated.
-            var itemData = System.Text.Encoding.UTF8.GetBytes(url + "X");
-            itemData[itemData.Length - 1] = 0;// Strings must be null terminated or they will run together
-            item.Type = 2; //String (ASCII)
-            item.Id = 270; // Author(s), 315 is mapped to the "Authors" field
-            item.Len = itemData.Length; // Number of items in the byte array
-            item.Value = itemData; // The byte array
-            img.SetPropertyItem(item); // Assign / add to the bitmap
-
-        }
-
-        public object GetStoredImagesSource()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string[] GetStoredModels()
-        {
-            var a = Directory.GetDirectories(Configuration.StoredImagesPath).Select(Path.GetFileName)
-                            .ToArray();
-            return a;
+            return result;
         }
     }
 }
