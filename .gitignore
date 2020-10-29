@@ -1,3 +1,5 @@
+GemFinder.ImageProvider/Images/
+
 *.swp
 *.*~
 project.lock.json
