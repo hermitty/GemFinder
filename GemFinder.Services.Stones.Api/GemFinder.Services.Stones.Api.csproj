@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GemFinder.Services.Stones.Application\GemFinder.Services.Stones.Application.csproj" />
+    <ProjectReference Include="..\GemFinder.Services.Stones.Infrastructure\GemFinder.Services.Stones.Infrastructure.csproj" />
+    <ProjectReference Include="..\GemFinder.Utils\GemFinder.Utils.csproj" />
+  </ItemGroup>
+
+
+</Project>

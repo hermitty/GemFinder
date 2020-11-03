@@ -3,9 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Api", "GemFinder.Api\GemFinder.Api.csproj", "{F29990DA-5675-480E-9D27-247D933DACD8}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.ImageProvider", "GemFinder.ImageProvider\GemFinder.ImageProvider.csproj", "{3A717D54-40AA-4FD7-B503-E46178C376EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GemFinder.Services.Stones", "GemFinder.Services.Stones", "{9920441C-76A0-4AD8-9188-D1679BE7E544}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stones.Core", "GemFinder.Services.Stones.Core\GemFinder.Services.Stones.Core.csproj", "{A3106CFA-725F-4A5F-9B41-27D53B9CFF44}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stones.Application", "GemFinder.Services.Stones.Application\GemFinder.Services.Stones.Application.csproj", "{262D26B5-B353-4E77-A65C-39DE84799725}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stones.Api", "GemFinder.Services.Stones.Api\GemFinder.Services.Stones.Api.csproj", "{ED3CBBB7-8784-43B5-B399-020BFCAC5525}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stones.Infrastructure", "GemFinder.Services.Stones.Infrastructure\GemFinder.Services.Stones.Infrastructure.csproj", "{2FC88ECE-732E-4CDA-8134-3CBE6EFCF5E3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Utils", "GemFinder.Utils\GemFinder.Utils.csproj", "{B15175C3-1F7B-4B26-A08B-0B4D97669B7E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Identity", "GemFinder.Identity\GemFinder.Identity.csproj", "{8AB8AB3A-AF98-4AA4-827E-23E52619E609}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,17 +25,43 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F29990DA-5675-480E-9D27-247D933DACD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F29990DA-5675-480E-9D27-247D933DACD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F29990DA-5675-480E-9D27-247D933DACD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F29990DA-5675-480E-9D27-247D933DACD8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3A717D54-40AA-4FD7-B503-E46178C376EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3A717D54-40AA-4FD7-B503-E46178C376EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A717D54-40AA-4FD7-B503-E46178C376EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A717D54-40AA-4FD7-B503-E46178C376EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3106CFA-725F-4A5F-9B41-27D53B9CFF44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3106CFA-725F-4A5F-9B41-27D53B9CFF44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3106CFA-725F-4A5F-9B41-27D53B9CFF44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3106CFA-725F-4A5F-9B41-27D53B9CFF44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{262D26B5-B353-4E77-A65C-39DE84799725}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{262D26B5-B353-4E77-A65C-39DE84799725}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{262D26B5-B353-4E77-A65C-39DE84799725}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{262D26B5-B353-4E77-A65C-39DE84799725}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED3CBBB7-8784-43B5-B399-020BFCAC5525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED3CBBB7-8784-43B5-B399-020BFCAC5525}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED3CBBB7-8784-43B5-B399-020BFCAC5525}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED3CBBB7-8784-43B5-B399-020BFCAC5525}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FC88ECE-732E-4CDA-8134-3CBE6EFCF5E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FC88ECE-732E-4CDA-8134-3CBE6EFCF5E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FC88ECE-732E-4CDA-8134-3CBE6EFCF5E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FC88ECE-732E-4CDA-8134-3CBE6EFCF5E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B15175C3-1F7B-4B26-A08B-0B4D97669B7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B15175C3-1F7B-4B26-A08B-0B4D97669B7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B15175C3-1F7B-4B26-A08B-0B4D97669B7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B15175C3-1F7B-4B26-A08B-0B4D97669B7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AB8AB3A-AF98-4AA4-827E-23E52619E609}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AB8AB3A-AF98-4AA4-827E-23E52619E609}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AB8AB3A-AF98-4AA4-827E-23E52619E609}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AB8AB3A-AF98-4AA4-827E-23E52619E609}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A3106CFA-725F-4A5F-9B41-27D53B9CFF44} = {9920441C-76A0-4AD8-9188-D1679BE7E544}
+		{262D26B5-B353-4E77-A65C-39DE84799725} = {9920441C-76A0-4AD8-9188-D1679BE7E544}
+		{ED3CBBB7-8784-43B5-B399-020BFCAC5525} = {9920441C-76A0-4AD8-9188-D1679BE7E544}
+		{2FC88ECE-732E-4CDA-8134-3CBE6EFCF5E3} = {9920441C-76A0-4AD8-9188-D1679BE7E544}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4D752D58-7D21-409B-A5FC-86E96D393A15}
