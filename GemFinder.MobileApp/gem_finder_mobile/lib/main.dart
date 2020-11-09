@@ -44,6 +44,7 @@
 import 'package:flutter/material.dart';
 import 'package:gem_finder_mobile/view/list_view/list_view.dart';
 import 'package:gem_finder_mobile/view/side_menu/side_menu.dart';
+import 'package:gem_finder_mobile/view/sign_up/sign_up_view.dart';
 
 
 void main() {
@@ -71,7 +72,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: SideMenu(),
-      body: StoneListView()
+      body: SignUpView()
     );
   }
 }
