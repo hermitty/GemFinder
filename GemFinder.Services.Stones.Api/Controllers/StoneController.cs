@@ -16,9 +16,13 @@ namespace GemFinder.Services.Stones.Api.Controllers
             this.queryDispatcher = queryDispatcher;
         }
 
-        [HttpGet("[action]")]
-        public async Task<SingleImageStoneDto> GetSingleImageStone(GetSingleImageStone query)
+        [HttpGet("[action]/{label}")]
+        public async Task<SingleImageStoneDto> GetSingleImageStone(string label)
         {
+            var query = new GetSingleImageStone()
+            {
+                Label = label
+            };
             var result = await queryDispatcher.QueryAsync(query);
             return result;
         }
