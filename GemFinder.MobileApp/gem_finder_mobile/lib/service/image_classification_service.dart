@@ -9,7 +9,7 @@ class ImageClassificationService {
     return await Tflite.runModelOnImage(
         path: imagePath,
         numResults: 10,
-        threshold: 0.5,
+        threshold: 0.35,
         imageMean: 127.5,
         imageStd: 127.5);
   }
