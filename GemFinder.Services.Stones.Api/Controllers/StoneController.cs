@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using GemFinder.Services.Stones.Application.DTO;
 using GemFinder.Services.Stones.Application.Queries;
 using GemFinder.Utils.CQRS.Queries;
@@ -16,14 +17,10 @@ namespace GemFinder.Services.Stones.Api.Controllers
             this.queryDispatcher = queryDispatcher;
         }
 
-        [HttpGet("[action]/{label}")]
-        public async Task<SingleImageStoneDto> GetSingleImageStone(string label)
+        [HttpGet("[action]")]
+        public async Task<IEnumerable<StoneImageDTO>> GetImagesStones()
         {
-            var query = new GetSingleImageStone()
-            {
-                Label = label
-            };
-            var result = await queryDispatcher.QueryAsync(query);
+            var result = await queryDispatcher.QueryAsync(new GetStonesImages());
             return result;
         }
     }

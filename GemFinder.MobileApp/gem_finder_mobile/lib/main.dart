@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gem_finder_mobile/view/list_view/grid_view.dart';
 import 'package:gem_finder_mobile/view/side_menu/side_menu.dart';
 import 'package:gem_finder_mobile/view/widgets/gallery_widget.dart';
 
@@ -28,7 +29,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(drawer: SideMenu(), 
-    body: GalleryView()
+    body: StoneGridView()
     );
   }
 }

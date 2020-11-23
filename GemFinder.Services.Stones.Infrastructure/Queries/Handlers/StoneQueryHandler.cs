@@ -1,34 +1,29 @@
-﻿using GemFinder.ImageProvider;
-using GemFinder.Services.Stones.Application.DTO;
+﻿using GemFinder.Services.Stones.Application.DTO;
 using GemFinder.Services.Stones.Application.Queries;
+using GemFinder.Services.Stones.Infrastructure.DataAccess;
 using GemFinder.Utils.CQRS.Queries;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace GemFinder.Services.Stones.Infrastructure.Queries.Handlers
 {
-    public class StoneQueryHandler : IQueryHandler<GetSingleImageStone, SingleImageStoneDto>
+    public class StoneQueryHandler : IQueryHandler<GetStonesImages, IEnumerable<StoneImageDTO>>
     {
-        private IImageProvider imageProvider;
+        private readonly Context context;
 
-        public StoneQueryHandler()
+        public StoneQueryHandler(Context context)
         {
-            imageProvider = new ImageProvider.ImageProvider();
+            this.context = context;
         }
 
-        public async Task<SingleImageStoneDto> HandleAsync(GetSingleImageStone query)
+
+        public async Task<IEnumerable<StoneImageDTO>> HandleAsync(GetStonesImages query) //TODO put to config
         {
-            var imageData = imageProvider.GetStoredImagesInfo().FirstOrDefault(x => x.Label == query.Label);
-            var image = System.IO.File.ReadAllBytes(Path.Combine(imageData.Path,imageData.FileName));
-            var result = new SingleImageStoneDto()
-            {
-                Label = imageData.Label,
-                Image = image
-            };
+            var result = context.Stones
+                .Select(x => new { Label = x.Label, FileNames = x.Images.Take(10) }).ToList()
+                .Select(x => new StoneImageDTO(x.Label, x.FileNames.Select(img => "https://hermitty.blob.core.windows.net/images/" + img.Name).ToList()));
+
             return result;
         }
     }

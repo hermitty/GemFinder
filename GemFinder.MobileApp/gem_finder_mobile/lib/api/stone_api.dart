@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
+import 'package:gem_finder_mobile/model/stone_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:gem_finder_mobile/service/uri_service.dart';
 
@@ -8,10 +9,15 @@ class StoneApi {
   StoneApi() {
     uriService = new UriService();
   }
-  Future<Image> GetStoneImage(String label) async {
-    var response = await http.get(uriService.getAcrionUri('Stone/GetSingleImageStone/{label}'));
+
+  Future<List<StoneModel>> getImagesStones() async {
+    var uri = uriService.getAcrionUri('Stone/GetImagesStones/');
+    var response = await http.get(uri);
     if (response.statusCode == 200) {
-      return json.decode(response.body)['image'];
+      List<StoneModel> list;
+      list = (json.decode(response.body)as List).map((e) => StoneModel.formJson(e)).toList();
+      return list;
     }
+    return null;
   }
 }

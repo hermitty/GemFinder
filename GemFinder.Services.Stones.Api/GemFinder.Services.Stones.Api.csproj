@@ -5,7 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GemFinder.Services.Stones.Application\GemFinder.Services.Stones.Application.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GemFinder.Services.Stones.Infrastructure\GemFinder.Services.Stones.Infrastructure.csproj" />
     <ProjectReference Include="..\GemFinder.Utils\GemFinder.Utils.csproj" />
   </ItemGroup>
