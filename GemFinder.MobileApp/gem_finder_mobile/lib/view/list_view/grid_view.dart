@@ -17,6 +17,8 @@ class StoneGridView extends StatefulWidget {
 }
 
 class StoneGridViewState extends State<StoneGridView> {
+
+  final stoneService = StoneService();
   final _debouncer = Debouncer(milliseconds: 300);
   List<StoneModel> stones = List();
   List<StoneModel> filteredStones = List();
@@ -64,7 +66,7 @@ final itemList = GridView.builder(
         itemBuilder: (ctx, i) => GridViewItem(
               filteredStones[i].label,
               filteredStones[i].name,
-              "https://images.unsplash.com/photo-1502164980785-f8aa41d53611?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+              filteredStones[i].imageUrls.first
             ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,

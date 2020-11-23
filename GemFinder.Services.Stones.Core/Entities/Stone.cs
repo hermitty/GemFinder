@@ -20,5 +20,9 @@ namespace GemFinder.Services.Stones.Core.Entities
             Label = label;
             Images = images;
         }
+        public Stone()
+        {
+
+        }
     }
 }

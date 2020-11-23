@@ -1,12 +1,15 @@
 import 'dart:convert';
-
 import 'package:flutter/services.dart';
+import 'package:gem_finder_mobile/api/stone_api.dart';
 import 'package:gem_finder_mobile/model/stone_model.dart';
 
 class StoneService {
+  final api = StoneApi();
 
   Future<List<StoneModel>> getStones() async {
-    var list = await _getStoneFromFile();
+    var list = await api.getImagesStones();
+    // if(list = null)
+    //   list = await _getStoneFromFile();
     return list;
   }
 
