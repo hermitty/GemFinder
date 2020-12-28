@@ -1,3 +1,4 @@
+
 # Copyright 2018 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -93,7 +94,7 @@ if __name__ == '__main__':
       suma = 0
       if path.exists(pathForImages) :
           imagePathList = load_images_from_folder(pathForImages)
-          smallList = imagePathList[:15]
+          smallList = imagePathList[:10]
           for imagePath in smallList :
               height = input_details[0]['shape'][1]
               width = input_details[0]['shape'][2]
@@ -107,21 +108,18 @@ if __name__ == '__main__':
               interpreter.invoke()
               output_data = interpreter.get_tensor(output_details[0]['index'])
               results = np.squeeze(output_data)
-              top_k = results.argsort()[-5:][::-1]
+              top_k = results.argsort()[-1:][::-1]
               labels = load_labels(args.label_file)
-
-              print(label)
               for i in top_k:   
-                if floating_model: 
-                  print('{}: {:05.2f}%'.format(labels[i], float(results[i])*100))
+                if floating_model and labels[i] == label: 
+                  print('{:08.6f}: {}'.format(float(results[i]), labels[i]))
                   suma += results[i]
                   licznik += 1
-                else:
-                  print('{}: {:05.2f}%'.format(labels[i], float(results[i] / 255.0)*100))
+                elif labels[i] == label:
+                  print('{:08.6f}: {}'.format(float(results[i] / 255.0), labels[i]))
                   suma += results[i]
                   licznik += 1
-              print('')
-          print('average: ')
+          print('srednia: ')
           srednia = suma / licznik
           print(srednia)
 
