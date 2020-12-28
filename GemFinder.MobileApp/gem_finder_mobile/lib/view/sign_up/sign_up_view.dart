@@ -79,7 +79,7 @@ class _SignUpViewState extends State<SignUpView> {
         onPressed: () {},
         padding: EdgeInsets.all(12),
         color: Colors.lightBlueAccent,
-        child: Text('Log In', style: TextStyle(color: Colors.white)),
+        child: Text('Create', style: TextStyle(color: Colors.white)),
       ),
     );
 

@@ -10,13 +10,22 @@ class SideMenu extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
+            padding: EdgeInsets.fromLTRB(30, 30, 16, 15),
+            
             child: Text(
               'Gem Finder',
-              style: TextStyle(color: Colors.white, fontSize: 25),
+              
+              style: TextStyle(color: Colors.white, fontSize: 45,),
+              
             ),
             decoration: BoxDecoration(
               color: Colors.green,
+              image: const DecorationImage(
+      image: NetworkImage('https://hermitty.blob.core.windows.net/images/097915e6-9e16-4ae7-816e-6a4c1ec2e223.jpeg'),
+      fit: BoxFit.cover,
+    ),
             ),
+            
           ),
           ListTile(
             leading: Icon(Icons.panorama),

@@ -20,13 +20,14 @@ class GridViewItem extends StatelessWidget {
           ),
         ),
         footer: GridTileBar(
+          
           backgroundColor: new Color.fromRGBO(32, 32, 32, 0.7),
           title: Text(
             title,
             textAlign: TextAlign.center,
           ),
           trailing: IconButton(
-            icon: Icon(Icons.favorite),
+            icon: Icon(Icons.favorite_border),
             color: Theme.of(context).accentColor,
             onPressed: () {},
           ),

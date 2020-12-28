@@ -27,10 +27,27 @@ class StoneGridViewState extends State<StoneGridView> {
   void initState() {
     super.initState();
 
-    StoneService().getStones().then((value) => setState(() {
+    StoneService().getStones().then((value) => 
+      setList(value));
+   
+  }
+
+  void setList(List<StoneModel> list) {
+    if(list != null) {
+setState(() {
+          stones = list;
+          filteredStones = list;
+        });
+    } 
+    else {
+    StoneService().getStoneOffline().then((value) => 
+    setState(() {
           stones = value;
           filteredStones = value;
         }));
+
+    };
+
   }
 
   @override
@@ -66,7 +83,7 @@ final itemList = GridView.builder(
         itemBuilder: (ctx, i) => GridViewItem(
               filteredStones[i].label,
               filteredStones[i].name,
-              filteredStones[i].imageUrls.first
+              filteredStones[i].imageUrls.elementAt(2)
             ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,

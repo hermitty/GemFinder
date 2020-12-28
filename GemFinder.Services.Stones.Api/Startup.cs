@@ -41,8 +41,6 @@ namespace GemFinder.Services.Stones.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthorization();
