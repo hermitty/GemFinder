@@ -149,6 +149,11 @@
     <Compile Include="tensorflow_examples\profiling\imagenet_preprocessing_ineffecient_input_pipeline.py" />
     <Compile Include="tensorflow_examples\profiling\resnet_model.py" />
     <Compile Include="tensorflow_examples\__init__.py" />
+    <Compile Include="testpy.py" />
+    <Compile Include="test_each.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="test_total.py" />
     <Compile Include="__init__.py" />
   </ItemGroup>
   <ItemGroup>

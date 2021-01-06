@@ -7,7 +7,6 @@ apatite
 azurite
 coral_fossil
 dendrite
-jasper
 labradorite
 lapis_lazuli
 larimar
@@ -15,7 +14,6 @@ lazurite
 malachite
 moon_stone
 obsidian
+rose_quartz
 tiger_eye
-topaz
-tourmaline
-turquoise
+tiger_eye_

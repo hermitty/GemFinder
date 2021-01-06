@@ -85,15 +85,17 @@ if __name__ == '__main__':
   # check the type of the input tensor
   floating_model = input_details[0]['dtype'] == np.float32
 
+  suma_total = 0
+  licznik_total = 0
   labelsList = load_labels(args.label_file)
   for label in labelsList :
       pathForImages = "C:/Users/User/Desktop/images/" + label
-      print(label)
+      #print(label)
       licznik = 0
       suma = 0
       if path.exists(pathForImages) :
           imagePathList = load_images_from_folder(pathForImages)
-          smallList = imagePathList[:15]
+          smallList = imagePathList[:10]
           for imagePath in smallList :
               height = input_details[0]['shape'][1]
               width = input_details[0]['shape'][2]
@@ -107,23 +109,28 @@ if __name__ == '__main__':
               interpreter.invoke()
               output_data = interpreter.get_tensor(output_details[0]['index'])
               results = np.squeeze(output_data)
-              top_k = results.argsort()[-5:][::-1]
+              top_k = results.argsort()[-1:][::-1]
               labels = load_labels(args.label_file)
-
-              print(label)
               for i in top_k:   
-                if floating_model: 
-                  print('{}: {:05.2f}%'.format(labels[i], float(results[i])*100))
+                if floating_model and labels[i] == label: 
+                  #print('{:05.2f}: {}'.format(float(results[i]), labels[i]))
                   suma += results[i]
                   licznik += 1
-                else:
-                  print('{}: {:05.2f}%'.format(labels[i], float(results[i] / 255.0)*100))
+                elif labels[i] == label:
+                  #print('{:05.2f}: {}'.format(float(results[i] / 255.0), labels[i]))
                   suma += results[i]
                   licznik += 1
-              print('')
-          print('average: ')
-          srednia = suma / licznik
-          print(srednia)
+          srednia = 1 - (suma / licznik)
+          print('{: >12}\t{:05.2f}%'.format(label,srednia*100))
+          licznik_total += 1
+          suma_total += srednia
+
+  
+  srednia_total = ((suma_total / licznik_total) * 100)
+  error = (100 - srednia_total) 
+  print('---------------------------------------')
+  print('Average:\t{:05.2f}%'.format(srednia_total))
+  print('Error:\t\t{:05.2f}%'.format(error))
 
 
 
@@ -157,3 +164,4 @@ if __name__ == '__main__':
   #    print('{:08.6f}: {}'.format(float(results[i] / 255.0), labels[i]))
 
   #print('time: {:.3f}ms'.format((stop_time - start_time) * 1000))
+

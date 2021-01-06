@@ -54,6 +54,7 @@ setState(() {
   Widget build(BuildContext context) {
     final filterField = Row(
           children: [
+            SizedBox(height: 50),
             Expanded(
               child: TextField(
                 decoration: InputDecoration(
@@ -83,7 +84,7 @@ final itemList = GridView.builder(
         itemBuilder: (ctx, i) => GridViewItem(
               filteredStones[i].label,
               filteredStones[i].name,
-              filteredStones[i].imageUrls.elementAt(2)
+              filteredStones[i].imageUrls.first
             ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
@@ -97,7 +98,7 @@ final itemList = GridView.builder(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         SizedBox(
-          height: 20.0,
+          height: 50.0,
         ),
         filterField,
         Expanded(
@@ -117,7 +118,19 @@ final itemList = GridView.builder(
 
     await ImageClassificationService.classifyImage(img.path)
         .then((value) => setState(() {
-              var labels = value.map<String>((e) => e["label"]).toList();
+              var labels = value.where((element) => element["confidence"] > 0.24).map<String>((e) => e["label"]).toList();
+              if(labels.isEmpty)
+              {
+                var max = value.first;
+                value.forEach((element) {
+                  if(element["confidence"]> max["confidence"])
+                  max = element;
+                });
+                var val = max["label"].toString();
+                labels = List();
+                labels.add(val);
+              }
+               
               filteredStones =
                   stones.where((u) => (labels.contains(u.label))).toList();
             }));

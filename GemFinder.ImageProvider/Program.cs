@@ -12,7 +12,7 @@ namespace GemFinder.ImageProvider
         static void Main(string[] args)
         {
             var imageProvider = new ImageProvider();
-            //imageProvider.DownloadImages();
+            imageProvider.DownloadImages();
         }
     }
 }

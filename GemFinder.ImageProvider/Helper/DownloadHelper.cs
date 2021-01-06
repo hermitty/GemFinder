@@ -86,7 +86,7 @@ namespace GemFinder.ImageProvider.Helper
 
         public void SaveImage(Image img, string path, string name)
         {
-            var folderName = name.Replace(" ", "_").Trim();
+            var folderName = name.Replace(" ", "_").Trim().Replace("\n", String.Empty).Replace("\t", String.Empty).Replace("\r", String.Empty); ;
             string imagePath = Path.Combine(path, folderName);
 
             if (!Directory.Exists(imagePath))

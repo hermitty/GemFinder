@@ -24,7 +24,7 @@ class StoneListViewState extends State<StoneListView> {
   void initState() {
     super.initState();
 
-    StoneService().getStones().then((value) => setState(() {
+    StoneService().getStoneOffline().then((value) => setState(() {
           stones = value;
           filteredStones = value;
         }));
@@ -84,13 +84,13 @@ class StoneListViewState extends State<StoneListView> {
                       SizedBox(
                         height: 5.0,
                       ),
-                      Text(
-                        filteredStones[index].name.toLowerCase(),
-                        style: TextStyle(
-                          fontSize: 14.0,
-                          color: Colors.grey,
-                        ),
-                      ),
+                      // Text(
+                      //   filteredStones[index].name.toLowerCase(),
+                      //   style: TextStyle(
+                      //     fontSize: 14.0,
+                      //     color: Colors.grey,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

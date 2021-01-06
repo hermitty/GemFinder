@@ -11,7 +11,7 @@ class StoneListViewState extends State<GalleryView> {
   int _current = 0;
     CarouselSlider carouselSlider;
   List imgList = [
-    'https://hermitty.blob.core.windows.net/images/0fca174b-c470-4329-af16-29de003d7f26.jpeg',
+    'https://hermitty.blob.core.windows.net/images/1bdf1752-9899-4b90-ba0f-2f4d21df6ab4.jpeg',
     'https://images.unsplash.com/photo-1554321586-92083ba0a115?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
     'https://images.unsplash.com/photo-1536679545597-c2e5e1946495?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
     'https://images.unsplash.com/photo-1543922596-b3bbaba80649?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
