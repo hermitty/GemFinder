@@ -1,6 +1,6 @@
 import numpy as np
 from PIL import Image
-import tensorflow as tf 
+import tensorflow as tf # TF2
 import cv2
 import os
 from os import path
@@ -25,7 +25,6 @@ input_mean = 0
 input_std = 255
 image_path = "C:/Users/User/Desktop/images/"
 
-
 interpreter = tf.lite.Interpreter(
     model_path = model_file, num_threads=None)
 interpreter.allocate_tensors()
@@ -33,16 +32,13 @@ input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 floating_model = input_details[0]['dtype'] == np.float32
 
-sum_total = 0
-count_total = 0
 labelsList = load_labels(label_file)
 for label in labelsList :
     pathForImages = image_path + label
-    count = 0
-    sum = 0
+    print(label)
     if path.exists(pathForImages) :
         imagePathList = load_images_from_folder(pathForImages)
-        smallList = imagePathList[:10]
+        smallList = imagePathList[:15]
         for imagePath in smallList :
             height = input_details[0]['shape'][1]
             width = input_details[0]['shape'][2]
@@ -56,25 +52,15 @@ for label in labelsList :
             interpreter.invoke()
             output_data = interpreter.get_tensor(output_details[0]['index'])
             results = np.squeeze(output_data)
-            top_k = results.argsort()[-1:][::-1]
+            top_k = results.argsort()[-5:][::-1]
             labels = load_labels(label_file)
+
+            print(label)
             for i in top_k:   
-                if floating_model and labels[i] == label: 
-                    sum += results[i]
-                    count += 1
-                elif labels[i] == label:
-                    sum += results[i]
-                    count += 1
-        srednia = 1 - (sum / count)
-        print('{: >12}\t{:05.2f}%'.format(label,srednia*100))
-        count_total += 1
-        sum_total += srednia
+                if floating_model: 
+                    print('{}: {:05.2f}%'.format(labels[i], float(results[i])*100))
+                else:
+                    print('{}: {:05.2f}%'.format(labels[i], float(results[i] / 255.0)*100))
 
-  
-srednia_total = ((sum_total / count_total) * 100)
-error = (100 - srednia_total) 
-print('---------------------------------------')
-print('Average:\t{:05.2f}%'.format(srednia_total))
-print('Error:\t\t{:05.2f}%'.format(error))
-
+            print("")
 
