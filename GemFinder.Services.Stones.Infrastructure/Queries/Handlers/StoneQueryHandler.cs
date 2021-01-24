@@ -5,10 +5,11 @@ using GemFinder.Utils.CQRS.Queries;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using GemFinder.Utils.CQRS.Commands;
 
 namespace GemFinder.Services.Stones.Infrastructure.Queries.Handlers
 {
-    public class StoneQueryHandler : IQueryHandler<GetStonesImages, IEnumerable<StoneImageDTO>>
+    public class StoneQueryHandler : IQueryHandler<GetStonesImages, IEnumerable<StoneImageDTO>>, IQueryHandler<GetStoneInfo, StoneDTO>
     {
         private readonly Context context;
 
@@ -24,6 +25,15 @@ namespace GemFinder.Services.Stones.Infrastructure.Queries.Handlers
                 .Select(x => new { Label = x.Label, FileNames = x.Images.Take(10) }).ToList()
                 .Select(x => new StoneImageDTO(x.Label, x.FileNames.Select(img => "https://hermitty.blob.core.windows.net/images/" + img.Name).ToList()));
 
+            return result;
+        }
+
+        public async Task<StoneDTO> HandleAsync(GetStoneInfo query)
+        {
+            var result = context.Stones
+                 .Where(x => x.Label == query.Label)
+                 .Select(x => new StoneDTO(x.Label, x.Images.Select(img => "https://hermitty.blob.core.windows.net/images/" + img.Name).ToList(), x.Name))
+                 .FirstOrDefault();
             return result;
         }
     }

@@ -18,6 +18,13 @@ namespace GemFinder.Services.Stones.Core.Entities
             SourceUrl = sourceUrl;
             Name = name;
         }
+
+        public Image(string name)
+        {
+            Id = Guid.NewGuid();
+            Name = name;
+        }
+
         public Image()
         {
 

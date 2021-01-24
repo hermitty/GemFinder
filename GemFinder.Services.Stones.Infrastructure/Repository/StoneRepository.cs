@@ -34,14 +34,42 @@ namespace GemFinder.Services.Stones.Infrastructure.Repository
         }
         public async Task<Stone> GetStone(string label)
         {
-            var stone = context.Stones.FirstOrDefault(x => x.Label == label);
+            var stone = context.Stones
+                .Include(x => x.Images)
+                .FirstOrDefault(x => x.Label == label);
             return stone;
         }
 
         public async Task<Stone> GetStone(Guid id)
         {
-            var stone = context.Stones.FirstOrDefault(x => x.Id == id);
+            var stone = context.Stones
+                .Include(x => x.Images)
+                .FirstOrDefault(x => x.Id == id);
             return stone;
+        }
+
+        public async Task UpdateStone(Stone stone)
+        {
+            context.Update(stone);
+            context.SaveChanges();
+        }
+
+        public async Task DeleteStone(Stone stone)
+        {
+            context.Remove(stone);
+            context.SaveChanges();
+        }
+
+        public async Task<Image> GetImage(string name)
+        {
+            var image = context.Images.FirstOrDefault(x => x.Name == name);
+            return image;
+        }
+
+        public async Task DeleteImage(Image image)
+        {
+            context.Remove(image);
+            context.SaveChanges();
         }
     }
 }

@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.Swagger;
 
 namespace GemFinder.Services.Stones.Api
 {
@@ -31,6 +32,9 @@ namespace GemFinder.Services.Stones.Api
             services.AddControllers();
             services.AddInfrasructure();
             services.AddInMemoryQueryDispatcher();
+            services.AddInMemoryCommandDispatcher();
+            services.AddSwaggerGen();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +52,12 @@ namespace GemFinder.Services.Stones.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
             });
         }
     }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GemFinder.Services.Stones.Core.Entities
 {
@@ -20,9 +19,23 @@ namespace GemFinder.Services.Stones.Core.Entities
             Label = label;
             Images = images;
         }
-        public Stone()
-        {
+        public Stone() {}
 
+        public void AddImage(string imageName)
+        {
+            if (Images == null)
+                Images = new List<Image>();
+
+            Images.Add(new Image(imageName));
+        }
+
+        public void AddImages(IList<string> imageNames)
+        {
+            if (Images == null)
+                Images = new List<Image>();
+
+            foreach (var img in imageNames)
+                Images.Add(new Image(img));
         }
     }
 }

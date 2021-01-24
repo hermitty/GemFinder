@@ -7,5 +7,4 @@
     public interface IQuery<T> : IQuery
     {
     }
-
 }
