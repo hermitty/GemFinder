@@ -18,9 +18,9 @@ tflite_output_file = 'C://Users//User//Desktop//model//trained_model//my_model.t
 labels_output_file = 'C://Users//User//Desktop//model//trained_model//my_labels.txt'
 
 
-model, labels, train_result = helper.train_model(
+model, labels, train_result = helper.get_trained_model(
     tfhub_module, image_dir, default_params,
-    helper.get_distribution_strategy(None),
+    helper.get_distribution_strategy(),
     image_size)
 
 

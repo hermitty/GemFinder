@@ -113,8 +113,7 @@ def build_model(module_layer, hparams, image_size, num_classes):
   return model
 
 
-def train_model(model, hparams, train_data_and_size, valid_data_and_size,
-                log_dir=None):
+def train_model(model, hparams, train_data_and_size, valid_data_and_size, log_dir=None):
   train_data, train_size = train_data_and_size
   valid_data, valid_size = valid_data_and_size
   loss = tf.keras.losses.CategoricalCrossentropy(
@@ -139,7 +138,7 @@ def train_model(model, hparams, train_data_and_size, valid_data_and_size,
       callbacks=callbacks)
 
 
-def train_model(tfhub_module,
+def get_trained_model(tfhub_module,
                           image_dir,
                           hparams,
                           distribution_strategy=None,

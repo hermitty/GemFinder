@@ -1,6 +1,6 @@
 import numpy as np
 from PIL import Image
-import tensorflow as tf # TF2
+import tensorflow as tf 
 import cv2
 import os
 from os import path
@@ -23,7 +23,7 @@ model_file = 'C:/Users/User/Desktop/model/trained_model/my_model.tflite'
 label_file = 'C:/Users/User/Desktop/model/trained_model/my_labels.txt'
 input_mean = 0
 input_std = 255
-image_path = "C:/Users/User/Desktop/images/"
+image_path = "C:/Users/User/Desktop/test/"
 
 interpreter = tf.lite.Interpreter(
     model_path = model_file, num_threads=None)
@@ -35,7 +35,7 @@ floating_model = input_details[0]['dtype'] == np.float32
 labelsList = load_labels(label_file)
 for label in labelsList :
     pathForImages = image_path + label
-    print(label)
+
     if path.exists(pathForImages) :
         imagePathList = load_images_from_folder(pathForImages)
         smallList = imagePathList[:15]

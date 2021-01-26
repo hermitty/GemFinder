@@ -25,10 +25,6 @@
     <Compile Include="train_helper.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="script.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="testpy.py" />
     <Compile Include="test_single.py">
       <SubType>Code</SubType>
     </Compile>

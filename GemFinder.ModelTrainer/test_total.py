@@ -23,7 +23,7 @@ model_file = 'C:/Users/User/Desktop/model/trained_model/my_model.tflite'
 label_file = 'C:/Users/User/Desktop/model/trained_model/my_labels.txt'
 input_mean = 0
 input_std = 255
-image_path = "C:/Users/User/Desktop/images/"
+image_path = "C:/Users/User/Desktop/test/"
 
 
 interpreter = tf.lite.Interpreter(
@@ -33,13 +33,13 @@ input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 floating_model = input_details[0]['dtype'] == np.float32
 
-sum_total = 0
+sum_total = 0.0
 count_total = 0
 labelsList = load_labels(label_file)
 for label in labelsList :
     pathForImages = image_path + label
     count = 0
-    sum = 0
+    sum = 0.0
     if path.exists(pathForImages) :
         imagePathList = load_images_from_folder(pathForImages)
         smallList = imagePathList[:10]
@@ -60,21 +60,22 @@ for label in labelsList :
             labels = load_labels(label_file)
             for i in top_k:   
                 if floating_model and labels[i] == label: 
-                    sum += results[i]
+                    sum += float(results[i])*100
                     count += 1
                 elif labels[i] == label:
-                    sum += results[i]
+                    sum += float(results[i] / 255.0)*100
                     count += 1
-        srednia = 1 - (sum / count)
-        print('{: >12}\t{:05.2f}%'.format(label,srednia*100))
+
+        average = sum / count
+        print('{: >12}\t{:05.2f}%'.format(label,average))
         count_total += 1
-        sum_total += srednia
+        sum_total += average
 
   
-srednia_total = ((sum_total / count_total) * 100)
-error = (100 - srednia_total) 
+average_total = sum_total / count_total
+error = 100 - average_total
 print('---------------------------------------')
-print('Average:\t{:05.2f}%'.format(srednia_total))
+print('Average:\t{:05.2f}%'.format(average_total))
 print('Error:\t\t{:05.2f}%'.format(error))
 
 
