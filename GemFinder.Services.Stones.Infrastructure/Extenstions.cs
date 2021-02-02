@@ -1,9 +1,7 @@
 ﻿using GemFinder.Services.Stones.Infrastructure.DataAccess;
 using GemFinder.Utils.CQRS;
 using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
 using Microsoft.EntityFrameworkCore;
-using System;
 using GemFinder.Services.Stones.Core.Repositories;
 using GemFinder.Services.Stones.Infrastructure.Repository;
 

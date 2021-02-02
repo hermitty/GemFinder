@@ -71,5 +71,17 @@ namespace GemFinder.Services.Stones.Infrastructure.Repository
             context.Remove(image);
             context.SaveChanges();
         }
+
+        public async Task AddStone(Stone stone)
+        {
+            context.Add(stone);
+            context.SaveChanges();
+        }
+
+        public async Task<IEnumerable<Stone>> GetAllStones()
+        {
+            var stones = context.Stones.ToList();
+            return stones;
+        }
     }
 }

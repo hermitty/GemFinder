@@ -8,11 +8,17 @@ namespace GemFinder.Identity.Entity
     public class User
     {
         public Guid Id { get; set; }
+
+        public bool Active { get; set; }
         public string Email { get; private set; }
         public string Role { get; private set; }
         public string Password { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public IEnumerable<string> Permissions { get; private set; }
+        public User()
+        {
+
+        }
 
         public User(Guid id, string email, string password, string role, DateTime createdAt,
             IEnumerable<string> permissions = null)

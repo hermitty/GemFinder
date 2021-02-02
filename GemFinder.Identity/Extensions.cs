@@ -11,6 +11,7 @@ using Convey.HTTP;
 using Convey.Security;
 using Convey.WebApi;
 using Convey.WebApi.Swagger;
+using GemFinder.Identity.DataAccess;
 using GemFinder.Identity.Exceptions;
 using GemFinder.Identity.Service;
 using GemFinder.Identity.Service.Context;
@@ -20,6 +21,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 
@@ -36,6 +38,9 @@ namespace GemFinder.Identity
 
         public static IConveyBuilder AddInfrastructure(this IConveyBuilder builder)
         {
+            builder.Services.AddDbContext<Context>(options =>
+            options.LogTo(s => { System.Diagnostics.Debug.WriteLine(s); }).
+                UseSqlServer("Data Source=DESKTOP-N7RLEAS\\DOGOCENTER; Initial Catalog=GemFinder2; Integrated Security=True;"));
             builder.Services.AddSingleton<IJwtProvider, JwtProvider>();
             builder.Services.AddSingleton<IPasswordService, PasswordService>();
             builder.Services.AddSingleton<IPasswordHasher<IPasswordService>, PasswordHasher<IPasswordService>>();
@@ -44,6 +49,7 @@ namespace GemFinder.Identity
             builder.Services.AddTransient<IUserRepository, UserRepository>();
             builder.Services.AddTransient<IAppContextFactory, AppContextFactory>();
             builder.Services.AddTransient(ctx => ctx.GetRequiredService<IAppContextFactory>().Create());
+
 
             return builder
                 .AddErrorHandler<ExceptionToResponseMapper>()
@@ -61,6 +67,7 @@ namespace GemFinder.Identity
                 .UseConvey()
                 .UseAccessTokenValidator()
                 .UseAuthentication();
+
 
             return app;
         }

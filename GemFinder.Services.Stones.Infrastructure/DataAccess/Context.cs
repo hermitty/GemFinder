@@ -1,8 +1,5 @@
 ﻿using GemFinder.Services.Stones.Core.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GemFinder.Services.Stones.Infrastructure.DataAccess
 {
@@ -19,7 +16,6 @@ namespace GemFinder.Services.Stones.Infrastructure.DataAccess
             builder.Entity<Stone>().ToTable("Image");
             builder.Entity<Stone>().ToTable("Stone").HasMany(c => c.Images);
             builder.Entity<Stone>().HasIndex(x => x.Label);
-
         }
     }
 }
