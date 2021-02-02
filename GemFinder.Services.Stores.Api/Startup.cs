@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GemFinder.Services.Stores.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace GemFinder.Identity
+namespace GemFinder.Services.Stores.Api
 {
     public class Startup
     {
@@ -26,6 +27,7 @@ namespace GemFinder.Identity
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddInfrasructure();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
