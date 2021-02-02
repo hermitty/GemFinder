@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -11,6 +11,12 @@
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GemFinder.Identity\GemFinder.Identity.csproj" />
+    <ProjectReference Include="..\GemFinder.Services.Stones.Core\GemFinder.Services.Stones.Core.csproj" />
+    <ProjectReference Include="..\GemFinder.Services.Stores.Core\GemFinder.Services.Stores.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GemFinder.Services.Stones.Core.Entities;
+using GemFinder.Services.Stores.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
@@ -10,55 +12,60 @@ namespace GemFinder.Tests
         [Fact]
         public void StoreHasReferenes()
         {
-            Assert.True(true);
+            var reference = new Reference("ref");
+            var store = new Store() { References = new List<Reference>() { reference } };
+            Assert.NotEmpty(store.References);
         }
 
         [Fact]
         public void StoreHasOwner()
         {
-            Assert.True(true);
+            var store = new Store() { Owner = Guid.NewGuid() };
+            Assert.True(store.Owner != Guid.Empty);
         }
 
         [Fact]
         public void StoreDoesNotHaveOwner()
         {
-            Assert.True(true);
+            var store = new Store();
+            Assert.True(store.Owner == Guid.Empty);
         }
 
         [Fact]
         public void StoreHasStoneList()
         {
-            Assert.True(true);
+            var stone = new StoreStone(Guid.NewGuid());
+            var store = new Store() { StoreStones = new List<StoreStone>() { stone } };
+            Assert.NotEmpty(store.StoreStones);
         }
 
         [Fact]
-        public void StoreImageList()
+        public void StoreHasImageList()
         {
-            Assert.True(true);
+            var image = new StoreImage("img");
+            var store = new Store() { StoreImages = new List<StoreImage>() { image } };
+            Assert.NotEmpty(store.StoreImages);
         }
 
-        [Fact]
-        public void UserHasOneStore()
+        public void StoreDoesNotHavaImageList()
         {
-            Assert.True(true);
-        }
-
-        [Fact]
-        public void UserHasManyStores()
-        {
-            Assert.True(true);
+            var store = new Store() { StoreImages = new List<StoreImage>() };
+            Assert.Empty(store.StoreImages);
         }
 
         [Fact]
         public void StoreHasOpinions()
         {
-            Assert.True(true);
+            var opinion = new Opinion(Guid.NewGuid(), Guid.NewGuid(), "", 4);
+            var store = new Store() { Opinions = new List<Opinion>() { opinion } };
+            Assert.NotEmpty(store.Opinions);
         }
 
         [Fact]
         public void StoreDoesNotHaveOpinions()
         {
-            Assert.True(true);
+            var store = new Store() { Opinions = new List<Opinion>()};
+            Assert.Empty(store.Opinions);
         }
     }
 }

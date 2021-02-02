@@ -1,34 +1,50 @@
-﻿using System;
+﻿using GemFinder.Services.Stones.Core.Entities;
+using GemFinder.Services.Stones.Core.Repositories;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using Xunit;
 
 namespace GemFinder.Tests
 {
     public class StoneTests
     {
+        private readonly IStoneRepository repo;
+        public StoneTests()
+        {
+            repo = new StoneRepositoryMock();
+        }
+
         [Fact]
         public void StoneIsUnique()
         {
-            Assert.True(true);
+            var stone = new Stone(Guid.NewGuid(), "test", "test", new List<Image>());
+            repo.AddStone(stone);
+            var allStones = repo.GetAllStones().Result;
+            var numberOfStones = allStones.Where(x => x.Id == stone.Id).Count();
+            Assert.True(numberOfStones == 1);
         }
 
         [Fact]
         public void StoneHasImages()
         {
-            Assert.True(true);
+            var stone = new Stone(Guid.NewGuid(), "test", "test", new List<Image>());
+            stone.AddImage("test");
+            Assert.NotEmpty(stone.Images);
         }
 
         [Fact]
         public void StoneHasLabel()
         {
-            Assert.True(true);
+            var stone = new Stone(Guid.NewGuid(), "test", "test", new List<Image>());
+            Assert.NotNull(stone.Images);
         }
 
         [Fact]
         public void StoneHasNoImages()
         {
-            Assert.True(true);
+            var stone = new Stone(Guid.NewGuid(), "test", "test", new List<Image>());
+            Assert.Empty(stone.Images);
         }
     }
 }
