@@ -22,8 +22,8 @@ namespace GemFinder.Services.Stones.Infrastructure.Queries.Handlers
         public async Task<IEnumerable<StoneImageDTO>> HandleAsync(GetStonesImages query) //TODO put to config
         {
             var result = context.Stones
-                .Select(x => new { Label = x.Label, FileNames = x.Images.Take(10) }).ToList()
-                .Select(x => new StoneImageDTO(x.Label, x.FileNames.Select(img => "https://hermitty.blob.core.windows.net/images/" + img.Name).ToList()));
+                .Select(x => new { Label = x.Label, Image = x.Images.FirstOrDefault().Name }).ToList()
+                .Select(x => new StoneImageDTO(x.Label, "https://hermitty.blob.core.windows.net/images/" + x.Image));
 
             return result;
         }
