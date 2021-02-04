@@ -1,5 +1,4 @@
-﻿using GemFinder.Services.Stones.Core.Entities;
-using GemFinder.Services.Stores.Core.Entities;
+﻿using GemFinder.Services.Stores.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -47,6 +46,7 @@ namespace GemFinder.Tests
             Assert.NotEmpty(store.StoreImages);
         }
 
+        [Fact]
         public void StoreDoesNotHavaImageList()
         {
             var store = new Store() { StoreImages = new List<StoreImage>() };

@@ -12,7 +12,7 @@ namespace GemFinder.Tests
 {
     public class UserTests
     {
-        IStoreRepository storeRepo;
+        private readonly IStoreRepository storeRepo;
         public UserTests()
         {
             storeRepo = new StoreRepositoryMock();
@@ -63,8 +63,10 @@ namespace GemFinder.Tests
         [Fact]
         public void UserCanBeLogged()
         {
-            var user = new User();
-            user.Active = true;
+            var user = new User
+            {
+                Active = true
+            };
             Assert.True(user.Active);
         }
     }

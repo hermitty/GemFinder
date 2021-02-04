@@ -19,8 +19,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GemFinder.Services.Stores.Application\GemFinder.Services.Stores.Application.csproj" />
-    <ProjectReference Include="..\GemFinder.Utils\GemFinder.Utils.csproj" />
+    <ProjectReference Include="..\..\GemFinder.ImageProvider\GemFinder.ImageProvider.csproj" />
+    <ProjectReference Include="..\GemFinder.Services.Stones.Application\GemFinder.Services.Stones.Application.csproj" />
+    <ProjectReference Include="..\..\GemFinder.Utils\GemFinder.Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Queries\" />
   </ItemGroup>
 
 </Project>

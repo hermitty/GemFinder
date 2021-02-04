@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GemFinder.Services.Stores.Core\GemFinder.Services.Stores.Core.csproj" />
-    <ProjectReference Include="..\GemFinder.Utils\GemFinder.Utils.csproj" />
+    <ProjectReference Include="..\..\GemFinder.Utils\GemFinder.Utils.csproj" />
   </ItemGroup>
 
 </Project>

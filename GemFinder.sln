@@ -7,13 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.ImageProvider", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GemFinder.Services.Stones", "GemFinder.Services.Stones", "{9920441C-76A0-4AD8-9188-D1679BE7E544}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stones.Core", "GemFinder.Services.Stones.Core\GemFinder.Services.Stones.Core.csproj", "{A3106CFA-725F-4A5F-9B41-27D53B9CFF44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stones.Core", "GemFinder.Services.Stones\GemFinder.Services.Stones.Core\GemFinder.Services.Stones.Core.csproj", "{A3106CFA-725F-4A5F-9B41-27D53B9CFF44}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stones.Application", "GemFinder.Services.Stones.Application\GemFinder.Services.Stones.Application.csproj", "{262D26B5-B353-4E77-A65C-39DE84799725}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stones.Application", "GemFinder.Services.Stones\GemFinder.Services.Stones.Application\GemFinder.Services.Stones.Application.csproj", "{262D26B5-B353-4E77-A65C-39DE84799725}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stones.Api", "GemFinder.Services.Stones.Api\GemFinder.Services.Stones.Api.csproj", "{ED3CBBB7-8784-43B5-B399-020BFCAC5525}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stones.Api", "GemFinder.Services.Stones\GemFinder.Services.Stones.Api\GemFinder.Services.Stones.Api.csproj", "{ED3CBBB7-8784-43B5-B399-020BFCAC5525}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stones.Infrastructure", "GemFinder.Services.Stones.Infrastructure\GemFinder.Services.Stones.Infrastructure.csproj", "{2FC88ECE-732E-4CDA-8134-3CBE6EFCF5E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stones.Infrastructure", "GemFinder.Services.Stones\GemFinder.Services.Stones.Infrastructure\GemFinder.Services.Stones.Infrastructure.csproj", "{2FC88ECE-732E-4CDA-8134-3CBE6EFCF5E3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Utils", "GemFinder.Utils\GemFinder.Utils.csproj", "{B15175C3-1F7B-4B26-A08B-0B4D97669B7E}"
 EndProject
@@ -25,13 +25,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Tests", "GemFinde
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GemFinder.Services.Stores", "GemFinder.Services.Stores", "{4D17DB9E-1983-4D5F-BB39-0D472E76A147}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stores.Api", "GemFinder.Services.Stores.Api\GemFinder.Services.Stores.Api.csproj", "{106BB4CC-0069-4A6E-BD9D-83A036B1CCCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stores.Api", "GemFinder.Services.Stores\GemFinder.Services.Stores.Api\GemFinder.Services.Stores.Api.csproj", "{106BB4CC-0069-4A6E-BD9D-83A036B1CCCC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stores.Application", "GemFinder.Services.Stores.Application\GemFinder.Services.Stores.Application.csproj", "{8ECA7D9D-1848-4503-9FE8-2246C20BAD9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stores.Application", "GemFinder.Services.Stores\GemFinder.Services.Stores.Application\GemFinder.Services.Stores.Application.csproj", "{8ECA7D9D-1848-4503-9FE8-2246C20BAD9F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stores.Core", "GemFinder.Services.Stores.Core\GemFinder.Services.Stores.Core.csproj", "{7AC02F59-8BCE-428C-ADCE-A6EEEBEE955C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stores.Core", "GemFinder.Services.Stores\GemFinder.Services.Stores.Core\GemFinder.Services.Stores.Core.csproj", "{7AC02F59-8BCE-428C-ADCE-A6EEEBEE955C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stores.Infrastructure", "GemFinder.Services.Stores.Infrastructure\GemFinder.Services.Stores.Infrastructure.csproj", "{5FEC3886-A2F2-4A6B-A493-3A341E057A45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GemFinder.Services.Stores.Infrastructure", "GemFinder.Services.Stores\GemFinder.Services.Stores.Infrastructure\GemFinder.Services.Stores.Infrastructure.csproj", "{5FEC3886-A2F2-4A6B-A493-3A341E057A45}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GemFinder.ApiGateway", "GemFinder.ApiGateway\GemFinder.ApiGateway.csproj", "{2DD2A518-0BB4-4FA0-B00A-32146193E4D9}"
 EndProject

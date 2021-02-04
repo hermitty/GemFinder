@@ -15,10 +15,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GemFinder.Identity\GemFinder.Identity.csproj" />
-    <ProjectReference Include="..\GemFinder.Service.Stones\GemFinder.Services.Stones.Core\GemFinder.Services.Stones.Core.csproj" />
-    <ProjectReference Include="..\GemFinder.Services.Stones\GemFinder.Services.Stones.Core\GemFinder.Services.Stones.Core.csproj" />
+    <ProjectReference Include="..\GemFinder.Services.Stones.Core\GemFinder.Services.Stones.Core.csproj" />
     <ProjectReference Include="..\GemFinder.Services.Stores.Core\GemFinder.Services.Stores.Core.csproj" />
-    <ProjectReference Include="..\GemFinder.Services.Stores\GemFinder.Services.Stores.Core\GemFinder.Services.Stores.Core.csproj" />
   </ItemGroup>
 
 </Project>

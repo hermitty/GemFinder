@@ -1,4 +1,5 @@
-﻿using GemFinder.Services.Stores.Core.Entities;
+﻿
+using GemFinder.Services.Stores.Core.Entities;
 using GemFinder.Services.Stores.Core.Repositories;
 using System;
 using System.Collections.Generic;

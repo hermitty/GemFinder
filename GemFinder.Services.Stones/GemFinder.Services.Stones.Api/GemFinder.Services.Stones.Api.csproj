@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GemFinder.Services.Stones.Infrastructure\GemFinder.Services.Stones.Infrastructure.csproj" />
-    <ProjectReference Include="..\GemFinder.Utils\GemFinder.Utils.csproj" />
+    <ProjectReference Include="..\..\GemFinder.Utils\GemFinder.Utils.csproj" />
   </ItemGroup>
 
 
